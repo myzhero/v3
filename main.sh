@@ -1,8 +1,8 @@
 #!/bin/bash
-### Color
 apt upgrade -y
 apt update -y
 apt install lolcat -y
+gem install lolcat
 apt install wondershaper -y
 Green="\e[92;1m"
 RED="\033[31m"
@@ -99,7 +99,7 @@ function print_ok() {
 }
 function print_install() {
 	echo -e "${green} ╓──────────────────────────────────╖ ${FONT}"
-    echo -e "${YELLOW} # $1 ${FONT}"
+    echo -e "${YELLOW}   $1 ${FONT}"
 	echo -e "${green} ╙──────────────────────────────────╜ ${FONT}"
     sleep 1
 }
@@ -111,7 +111,7 @@ function print_error() {
 function print_success() {
     if [[ 0 -eq $? ]]; then
 		echo -e "${green} ╓──────────────────────────────────╖ ${FONT}"
-        echo -e "${Green} # $1 berhasil dipasang"
+        echo -e "${Green}   $1 berhasil dipasang"
 		echo -e "${green} ╙──────────────────────────────────╜ ${FONT}"
         sleep 2
     fi
@@ -237,12 +237,12 @@ function pasang_domain() {
 echo -e ""
 clear
 echo -e "   ╓─────────────────────────────╖"
-echo -e "   |           \e[1;32mSETUP DOMAIN\e[0m           |"
+echo -e "   |          \e[1;32mSETUP DOMAIN\033[0m             "
 echo -e "   ╙─────────────────────────────╜"
 echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
 echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random "
 echo -e "   ------------------------------------"
-read -p "   Pilih Options Dari ( 1 - 2 ) : " host
+read -p "   Choose Options From ( 1 - 2 ) : " host
 echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mMasukan Domain Kamu !$NC"
@@ -265,8 +265,8 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 restart_system() {
-    USRSC=$(wget -qO- https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $ipsaya | awk '{print $2}')
-    EXPSC=$(wget -qO- https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $ipsaya | awk '{print $3}')
+    USRSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
+    EXPSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
     TIMEZONE=$(printf '%(%H:%M:%S)T')
     TEXT="
 <code>────────────────────</code>
