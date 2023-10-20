@@ -892,7 +892,17 @@ print_install "Enable Service"
     clear
 }
 
-# Fingsi Install Script
+function Install_UdpSsh(){
+clear
+print_install "Install Udp Custom"
+wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh
+wget https://raw.githubusercontent.com/Rerechan02/UDP/main/zi.sh && chmod +x udp.sh && ./zi.sh
+wget https://raw.githubusercontent.com/Rerechan02/UDP/main/req.sh && chmod +x udp.sh && ./req.sh
+clear
+print_success " Udp Custom"
+clear
+}
+
 function instal(){
 clear
     first_setup
@@ -919,6 +929,7 @@ clear
     profile
     enable_services
     restart_system
+    Install_UdpSsh
 }
 instal
 echo ""
