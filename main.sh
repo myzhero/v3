@@ -1,9 +1,4 @@
 #!/bin/bash
-apt upgrade -y
-apt update -y
-apt install lolcat -y
-gem install lolcat
-apt install wondershaper -y
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
@@ -31,12 +26,11 @@ clear
 clear && clear && clear
 clear;clear;clear
 
-  # // Banner
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo -e "  Welcome To Premium Tunneling ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
+echo -e "  Welcome To Fv store Project ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Auther : ${green} Premium ${NC}${YELLOW}(${NC} ${green} Premium ${NC}${YELLOW})${NC}"
-echo -e " © Recode By My Self Premium Tunneling${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "  Auther : ${green} ZheeVpn ${NC}${YELLOW}(${NC} ${green} Fv store ${NC}${YELLOW})${NC}"
+echo -e " © Recode By Fv store Tunneling${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
@@ -82,9 +76,7 @@ fi
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-#IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m"
 clear
     REPO="https://raw.githubusercontent.com/myzhero/v3/main/"
 
@@ -98,9 +90,9 @@ function print_ok() {
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} ╓──────────────────────────────────╖ ${FONT}"
+	echo -e "${green} ╓────────────────────────────────────╖ ${FONT}"
     echo -e "${YELLOW}   $1 ${FONT}"
-	echo -e "${green} ╙──────────────────────────────────╜ ${FONT}"
+	echo -e "${green} ╙────────────────────────────────────╜ ${FONT}"
     sleep 1
 }
 
@@ -127,7 +119,6 @@ function is_root() {
 
 }
 
-# Buat direktori xray
 print_install "Membuat direktori xray"
     mkdir -p /etc/xray
     curl -s ifconfig.me > /etc/xray/ipvps
@@ -156,7 +147,6 @@ print_install "Membuat direktori xray"
     export Arch=$( uname -m )
     export IP=$( curl -s https://ipinfo.io/ip/ )
 
-# Change Environment System
 function first_setup(){
     timedatectl set-timezone Asia/Jakarta
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
@@ -183,7 +173,6 @@ else
 fi
 }
 
-# GEO PROJECT
 clear
 function nginx_install() {
     # // Checking System
@@ -214,6 +203,9 @@ function base_package() {
     systemctl restart chronyd
     systemctl enable chrony
     systemctl restart chrony
+    apt install lolcat -y
+    gem install lolcat
+    apt install wondershaper -y
     chronyc sourcestats -v
     chronyc tracking -v
     apt install ntpdate -y
@@ -241,8 +233,8 @@ echo -e "   |        \e[1;32mSETUP DOMAIN\033[0m             "
 echo -e "   ╙─────────────────────────────╜"
 echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
 echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random "
-echo -e "   ------------------------------------"
-read -p "   Choose Options From ( 1 - 2 ) : " host
+echo -e "   ----------------------------------"
+read -p "   Choose Options From [ 1 - 2 ] : " host
 echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mMasukan Domain Kamu !$NC"
@@ -263,7 +255,6 @@ clear
 }
 
 clear
-#GANTI PASSWORD DEFAULT
 restart_system() {
     USRSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
     EXPSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
@@ -347,7 +338,6 @@ rm -rf /etc/vmess/.vmess.db
     echo "& plughin Account" >>/etc/shadowsocks/.shadowsocks.db
     echo "& plughin Account" >>/etc/ssh/.ssh.db
     }
-#Instal Xray
 function install_xray() {
 clear
     print_install "Core Xray 1.8.1 Latest Version"
@@ -362,9 +352,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
  
     # // Ambil Config Server
     wget -O /etc/xray/config.json "${REPO}files/config.json" >/dev/null 2>&1
-    #wget -O /usr/local/bin/xray "${REPO}xray/xray.linux.64bit" >/dev/null 2>&1
     wget -O /etc/systemd/system/runn.service "${REPO}files/runn.service" >/dev/null 2>&1
-    #chmod +x /usr/local/bin/xray
     domain=$(cat /etc/xray/domain)
     IPVS=$(cat /etc/xray/ipvps)
     print_success "Core Xray 1.8.1 Latest Version"
@@ -435,8 +423,6 @@ chmod +x /etc/pam.d/common-password
     debconf-set-selections <<<"keyboard-configuration keyboard-configuration/variantcode string "
     debconf-set-selections <<<"keyboard-configuration keyboard-configuration/variant select English"
     debconf-set-selections <<<"keyboard-configuration keyboard-configuration/xkb-keymap select "
-
-# go to root
 cd
 
 # Edit file /etc/systemd/system/rc-local.service
@@ -546,9 +532,7 @@ EOF
 systemctl daemon-reload
 systemctl restart trip
 systemctl enable trip
-#SERVICE LIMIT QUOTA
 
-#SERVICE VMESS
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
 wget -q -O /usr/local/kyt/udp-mini "${REPO}files/udp-mini"
