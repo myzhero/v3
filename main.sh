@@ -929,7 +929,6 @@ clear
     profile
     enable_services
     restart_system
-    Install_UdpSsh
 }
 instal
 echo ""
