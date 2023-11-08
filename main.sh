@@ -1,9 +1,6 @@
 #!/bin/bash
 apt upgrade -y
 apt update -y
-apt install lolcat -y
-gem install lolcat
-apt install wondershaper -y
 Green="\e[92;1m"
 RED="\033[31m"
 YELLOW="\033[33m"
@@ -98,9 +95,9 @@ function print_ok() {
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} ╓──────────────────────────────────╖ ${FONT}"
+	echo -e "${green} =────────────────────────────────────= ${FONT}"
     echo -e "${YELLOW}   $1 ${FONT}"
-	echo -e "${green} ╙──────────────────────────────────╜ ${FONT}"
+	echo -e "${green} =────────────────────────────────────= ${FONT}"
     sleep 1
 }
 
@@ -110,9 +107,9 @@ function print_error() {
 
 function print_success() {
     if [[ 0 -eq $? ]]; then
-		echo -e "${green} ╓──────────────────────────────────╖ ${FONT}"
+		echo -e "${green} =──────────────────────────────────= ${FONT}"
         echo -e "${Green}   $1 berhasil dipasang"
-		echo -e "${green} ╙──────────────────────────────────╜ ${FONT}"
+		echo -e "${green} =──────────────────────────────────= ${FONT}"
         sleep 2
     fi
 }
@@ -209,6 +206,9 @@ function base_package() {
     apt install figlet -y
     apt update -y
     apt upgrade -y
+    apt install ruby -y
+    gem install lolcat
+    apt install wondershaper -y
     apt dist-upgrade -y
     systemctl enable chronyd
     systemctl restart chronyd
@@ -280,7 +280,8 @@ restart_system() {
 <code>Exp Sc : </code><code>$EXPSC</code>
 <code>────────────────────</code>
 <i>Automatic Notification from Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/×××"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/×××"}]]}'
+'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/×××"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/×××"}]]}'
+"
     curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
@@ -485,8 +486,15 @@ print_success "Password SSH"
 
 function udp_mini(){
 clear
-print_install "Memasang Service Limit Quota"
-wget ${REPO}files/limit.sh && chmod +x limit.sh && ./limit.sh
+print_install "Memasang Service Limit IP & Quota"
+wget -q -O /etc/systemd/system/limitvmess.service "${REPO}files/limitvmess.service" && chmod +x limitvmess.service >/dev/null 2>&1
+wget -q -O /etc/systemd/system/limitvless.service "${REPO}files/limitvless.service" && chmod +x limitvless.service >/dev/null 2>&1
+wget -q -O /etc/systemd/system/limittrojan.service "${REPO}files/limittrojan.service" && chmod +x limittrojan.service >/dev/null 2>&1
+wget -q -O /etc/systemd/system/limitshadowsocks.service "${REPO}files/limitshadowsocks.service" && chmod +x limitshadowsocks.service >/dev/null 2>&1
+wget -q -O /etc/xray/limit.vmess "${REPO}files/vmess && chmod +x /etc/xray/limit.vmess" >/dev/null 2>&1
+wget -q -O /etc/xray/limit.vless "${REPO}files/vless && chmod +x /etc/xray/limit.vless" >/dev/null 2>&1
+wget -q -O /etc/xray/limit.trojan "${REPO}files/trojan && chmod +x /etc/xray/limit.trojan" >/dev/null 2>&1
+wget -q -O /etc/xray/limit.shadowsocks "${REPO}files/shadowsocks && chmod +x /etc/xray/limit.shadowsocks" >/dev/null 2>&1
 
 cd
 wget -q -O /usr/bin/limit-ip "${REPO}files/limit-ip"
@@ -543,12 +551,15 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+systemctl enable --now limitvmess
+systemctl enable --now limitvless
+systemctl enable --now limittrojan
+systemctl enable --now limitshadowsocks
 systemctl daemon-reload
 systemctl restart trip
 systemctl enable trip
-#SERVICE LIMIT QUOTA
+systemctl daemon-reload
 
-#SERVICE VMESS
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
 wget -q -O /usr/local/kyt/udp-mini "${REPO}files/udp-mini"
@@ -568,7 +579,7 @@ systemctl disable udp-mini-3
 systemctl stop udp-mini-3
 systemctl enable udp-mini-3
 systemctl start udp-mini-3
-print_success "Limit Quota Service"
+print_success "Limit IP & Quota Service"
 }
 
 function ssh_slow(){
@@ -939,7 +950,6 @@ clear
     ins_swab
     ins_Fail2ban
     ins_epro
-    install_udpSsh
     ins_restart
     menu
     profile
@@ -955,9 +965,8 @@ rm -rf /root/*.sh
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
-#sudo hostnamectl set-hostname $user
 secs_to_human "$(($(date +%s) - ${start}))"
-sudo hostnamectl set-hostname $username
+sudo hostnamectl set-hostname $USRSC
 echo -e "${green} Script Successfull Installed"
 echo ""
 read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Menu ") "
