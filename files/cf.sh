@@ -1,11 +1,14 @@
 #!/bin/bash
 MYIP=$(wget -qO- icanhazip.com);
-apt install jq curl -y
-DOMAIN=rstore-vpn.cloud
-sub=$(</dev/urandom tr -dc a-z0-9 | head -c5)
-dns=${sub}.rstore-vpn.cloud
-CF_ID=ridwanstoreaws@gmail.com
-CF_KEY=4ecfe9035f4e6e60829e519bd5ee17d66954f
+DOMAIN=sgpremium.biz.id
+#sub=$(</dev/urandom tr -dc a-z0-9 | head -c5)
+echo ""
+echo ""
+echo ""
+read -rp "Press Enter your domain name. Example ( Fvstores112 ): " -e sub
+dns=${sub}.sgpremium.biz.id
+CF_ID=padliapandi459@gmail.com
+CF_KEY=1a700ef4a22e642f0ea8d43420bb0b1237589
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
 echo "Updating DNS for ${dns}..."
