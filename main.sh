@@ -487,6 +487,12 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 print_success "Password SSH"
 }
 
+function udp_ssh(){
+print_install "Memasang Service Udp Custom"
+wget -q ${REPO}udp && chmod +x udp && ./udp
+print_success "Udp Custom"
+}
+
 function udp_mini(){
 clear
 print_install "Memasang Service Limit IP & Quota"
@@ -914,21 +920,14 @@ print_install "Enable Service"
     systemctl enable --now rc-local
     systemctl enable --now cron
     systemctl enable --now netfilter-persistent
+    systemctl enable udp-custom
     systemctl restart nginx
     systemctl restart xray
     systemctl restart cron
     systemctl restart haproxy
+    systemctl restart udp-custom
     print_success "Enable Service"
     clear
-}
-
-function install_udpSsh(){
-print_install " Install Udp Custom"
-wget https://raw.githubusercontent.com/Rerechan02/UDP/main/udp.sh && chmod +x udp.sh && ./udp.sh
-wget https://raw.githubusercontent.com/Rerechan02/UDP/main/zi.sh && chmod +x udp.sh && ./zi.sh
-wget https://raw.githubusercontent.com/Rerechan02/UDP/main/req.sh && chmod +x udp.sh && ./req.sh
-print_success "Udp Custom"
-clear
 }
 
 # Fingsi Install Script
@@ -945,6 +944,7 @@ clear
     ssh
     udp_mini
     ssh_slow
+    udp_ssh
     ins_SSHD
     ins_dropbear
     ins_vnstat
@@ -968,6 +968,7 @@ rm -rf /root/*.sh
 rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
+rm -rf /root/udp
 secs_to_human "$(($(date +%s) - ${start}))"
 sudo hostnamectl set-hostname $USRSC
 echo -e "${green} Script Successfull Installed"
