@@ -332,6 +332,9 @@ rm -rf /etc/vmess/.vmess.db
     mkdir -p /etc/limit/vless
     mkdir -p /etc/limit/trojan
     mkdir -p /etc/limit/ssh
+    mkdir -p /etc/user/vmess
+    mkdir -p /etc/user/vless
+    mkdir -p /etc/user/trojan
     chmod +x /var/log/xray
     touch /etc/xray/domain
     touch /var/log/xray/access.log
