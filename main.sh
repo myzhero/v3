@@ -335,6 +335,7 @@ rm -rf /etc/vmess/.vmess.db
     mkdir -p /etc/user/vmess
     mkdir -p /etc/user/vless
     mkdir -p /etc/user/trojan
+    mkdir -p /etc/user/ssh
     chmod +x /var/log/xray
     touch /etc/xray/domain
     touch /var/log/xray/access.log
@@ -593,7 +594,6 @@ print_success "Limit IP & Quota Service"
 
 function ssh_slow(){
 clear
-# // Installing UDP Mini
 print_install "Memasang modul SlowDNS Server"
     wget -q -O /tmp/nameserver "${REPO}files/nameserver" >/dev/null 2>&1
     chmod +x /tmp/nameserver
