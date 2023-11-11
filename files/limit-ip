@@ -91,12 +91,34 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
     done
 }
 
+function sship(){
+echo -n > /var/log/xray/access.log
+sleep 3
+data=( `ls /etc/kyt/limit/ssh/ip`);
+    for user in "${data[@]}"
+    do
+    iplimit=$(cat /etc/kyt/limit/ssh/ip/$user)
+    ehh=$(cat /var/log/xray/access.log | grep "$user" | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | sort | uniq);
+    cekcek=$(echo -e "$ehh" | wc -l);
+    if [[ $cekcek -gt $iplimit ]]; then
+        send_log
+        userdel --force $user
+    else
+      echo ""
+    fi
+done
+systemctl reload ssh
+}
+
+
 if [[ ${1} == "vmip" ]]; then
 vmip
 elif [[ ${1} == "vlip" ]]; then
 vlip
 elif [[ ${1} == "trip" ]]; then
 trip
+elif [[ ${1} == "sship" ]]; then
+sship
 fi
 
 
