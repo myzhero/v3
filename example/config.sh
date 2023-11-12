@@ -1,7 +1,7 @@
 #!/bin/bash
 echo -e "Setting Config Xray"
 # xray config
-cat > /etc/xray/config.json << END
+cat > /etc/config.json << END
 {
   "log" : {
     "access": "/var/log/xray/access.log",
