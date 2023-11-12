@@ -844,6 +844,7 @@ if [ "$BASH" ]; then
     fi
 fi
 mesg n || true
+clear
 menu
 EOF
 
@@ -851,6 +852,11 @@ cat >/etc/cron.d/xp_all <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 0 * * * root /usr/local/sbin/xp
+	END
+cat >/etc/cron.d/limit-ip-ssh <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		2 0 * * * root /usr/local/sbin/limit-ip-ssh
 	END
 	cat >/etc/cron.d/logclean <<-END
 		SHELL=/bin/sh
