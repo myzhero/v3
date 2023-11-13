@@ -14,13 +14,8 @@ GRAY="\e[1;30m"
 NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
-TIMES="10"
-CHATID="-1001899398362"
-KEY="6293396608:AAGqZVrmdQjPc3tOj_gnUoWOVMrBsm8v6Xo"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
-  # // Exporint IP AddressInformation
 export IP=$( curl -sS icanhazip.com )
 
 # // Clear Data
@@ -28,16 +23,39 @@ clear
 clear && clear && clear
 clear;clear;clear
 
-  # // Banner
-echo -e "${YELLOW}----------------------------------------------------------${NC}"
-echo -e "  Welcome To FVstore Tunneling ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
-echo -e " This Will Quick Setup VPN Server On Your Server"
-echo -e "  Auther : ${green} FVstore ${NC}${YELLOW}(${NC} ${green} ZheeVPN ${NC}${YELLOW})${NC}"
-echo -e " © Recode By FVstore Tunneling${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
-echo -e "${YELLOW}----------------------------------------------------------${NC}"
+echo -e "${YELLOW} ----------------------------------------------------------${NC}"
+echo -e "   Welcome To FVstore Tunneling ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
+echo -e "   This Will Quick Setup VPN Server On Your Server"
+echo -e "   Auther : ${green} FVstore ${NC}${YELLOW}(${NC}${green} ZheeVPN ${NC}${YELLOW})${NC}"
+echo -e "  © Recode By FVstore Tunneling${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "${YELLOW} ----------------------------------------------------------${NC}"
 echo ""
-sleep 2
-
+sleep 33
+IPVPES="https://raw.githubusercontent.com/myzhero/permission/main/ip"
+clear
+ipsaya=$(wget -qO- ipinfo.io/ip)
+data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
+date_list=$(date +"%Y-%m-%d" -d "$data_server")
+checking_sc() {
+  useexp=$(wget -qO- $IPVPES | grep $ipsaya | awk '{print $3}')
+  if [[ $date_list < $useexp ]]; then
+    echo -ne
+  else
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "\033[42m          404 NOT FOUND AUTOSCRIPT          \033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e ""
+    echo -e "            ${RED}PERMISSION DENIED !${NC}"
+    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
+    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
+    echo -e "             \033[0;33mContact Admin :${NC}"
+    echo -e "      \033[0;36mTelegram${NC} t.me/6283160098834"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    exit
+  fi
+}
+checking_sc
+clear
 # // Checking Os Architecture
 if [[ $( uname -m | awk '{print $1}' ) == "x86_64" ]]; then
     echo -e "${OK} Your Architecture Is Supported ( ${green}$( uname -m )${NC} )"
@@ -63,6 +81,13 @@ else
     echo -e "${OK} IP Address ( ${green}$IP${NC} )"
 fi
 
+# // IP Address Validating
+if [[ $IP == "" ]]; then
+    echo -e "${EROR} IP Address ( ${YELLOW}Not Detected${NC} )"
+else
+    echo -e "${OK} IP Address ( ${green}${ipsaya}${NC} )"
+fi
+
 # // Validate Successfull
 echo ""
 read -p "$( echo -e "Press ${GRAY}[ ${NC}${green}Enter${NC} ${GRAY}]${NC} For Starting Installation") "
@@ -79,7 +104,6 @@ fi
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-#IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
 echo -e "\e[32mloading...\e[0m"
 clear
@@ -123,6 +147,14 @@ function is_root() {
     fi
 
 }
+
+# Information vps
+curl "ipinfo.io/org?token=7a814b6263b02c" > /root/.isp
+curl "ipinfo.io/city?token=7a814b6263b02c" > /root/.city
+curl "ipinfo.io/region?token=7a814b6263b02c" > /root/.region
+curl "ipinfo.io/country?token=7a814b6263b02c" > /root/.code-negara
+curl "ipinfo.io/loc?token=7a814b6263b02c" > /root/.map
+curl "ipinfo.io/timezone?token=7a814b6263b02c" > /root/.timezone
 
 # Buat direktori xray
 print_install "Membuat direktori xray"
@@ -265,10 +297,14 @@ clear
 clear
 #GANTI PASSWORD DEFAULT
 restart_system() {
-    USRSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
-    EXPSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
-    TIMEZONE=$(printf '%(%H:%M:%S)T')
-    TEXT="
+TIMES="10"
+CHATID="-1001899398362"
+KEY="6293396608:AAGqZVrmdQjPc3tOj_gnUoWOVMrBsm8v6Xo"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+USRSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
+EXPSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
+TIMEZONE=$(printf '%(%H:%M:%S)T')
+TEXT="
 <code>────────────────────</code>
 <b>⚡AUTOSCRIPT PREMIUM⚡</b>
 <code>────────────────────</code>
