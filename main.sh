@@ -498,69 +498,9 @@ print_success "Udp Custom"
 
 function udp_mini(){
 clear
-print_install "Memasang Service Limit IP & Quota"
-wget -q ${REPO}files/tunnel && chmod +x tunnel && ./tunnel
-
-cd
-wget -q -O /usr/bin/limit-ip "${REPO}files/limit-ip"
-chmod +x /usr/bin/*
-cd /usr/bin
-sed -i 's/\r//' limit-ip
-cd
-clear
-#SERVICE LIMIT ALL IP
-cat >/etc/systemd/system/vmip.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip vmip
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl restart vmip
-systemctl enable vmip
-
-cat >/etc/systemd/system/vlip.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip vlip
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-systemctl daemon-reload
-systemctl restart vlip
-systemctl enable vlip
-
-cat >/etc/systemd/system/trip.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip trip
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-systemctl daemon-reload
-systemctl restart trip
-systemctl enable trip
-systemctl daemon-reload
+print_install "Memasang Service Limit IP/Quota & BadVPN"
+wget -qO- fv-tunnel "${REPO}example/fodder/fv-tunnel" | bash
+rm -rf fv-tunnel
 
 # // Installing UDP Mini
 mkdir -p /usr/local/kyt/
@@ -570,18 +510,15 @@ wget -q -O /etc/systemd/system/udp-mini-1.service "${REPO}files/udp-mini-1.servi
 wget -q -O /etc/systemd/system/udp-mini-2.service "${REPO}files/udp-mini-2.service"
 wget -q -O /etc/systemd/system/udp-mini-3.service "${REPO}files/udp-mini-3.service"
 systemctl disable udp-mini-1
-systemctl stop udp-mini-1
 systemctl enable udp-mini-1
 systemctl start udp-mini-1
 systemctl disable udp-mini-2
-systemctl stop udp-mini-2
 systemctl enable udp-mini-2
 systemctl start udp-mini-2
 systemctl disable udp-mini-3
-systemctl stop udp-mini-3
 systemctl enable udp-mini-3
 systemctl start udp-mini-3
-print_success "Limit IP & Quota Service"
+print_success "Service Limit IP/Quota & BadVPN"
 }
 
 function ssh_slow(){
