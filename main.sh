@@ -14,6 +14,9 @@ GRAY="\e[1;30m"
 NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
+CHATID="-1001899398362"
+KEY="6293396608:AAGqZVrmdQjPc3tOj_gnUoWOVMrBsm8v6Xo"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
 clear
 export IP=$( curl -sS icanhazip.com )
@@ -212,7 +215,6 @@ else
 fi
 }
 
-# GEO PROJECT
 clear
 function nginx_install() {
     # // Checking System
@@ -295,30 +297,27 @@ clear
 }
 
 clear
-#GANTI PASSWORD DEFAULT
-restart_system() {
-TIMES="10"
-CHATID="-1001899398362"
-KEY="6293396608:AAGqZVrmdQjPc3tOj_gnUoWOVMrBsm8v6Xo"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-USRSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
-EXPSC=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
+notifikasi(){
+username=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
+exp=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 TEXT="
 <code>────────────────────</code>
 <b>⚡AUTOSCRIPT PREMIUM⚡</b>
 <code>────────────────────</code>
-<code>ID     : </code><code>$USRSC</code>
-<code>Domain : </code><code>$domain</code>
-<code>Date   : </code><code>$TIME</code>
-<code>Time   : </code><code>$TIMEZONE</code>
-<code>Ip vps : </code><code>$ipsaya</code>
-<code>Exp Sc : </code><code>$EXPSC</code>
+<code>User     :</code><code>$username</code>
+<code>Domain   :</code><code>$domain</code>
+<code>IPVPS    :</code><code>$MYIP</code>
+<code>ISP      :</code><code>$(cat /root/.isp)</code>
+<code>DATE     :</code><code>$DATEVPS</code>
+<code>Time     :</code><code>$TIMEZONE</code>
+<code>Expired  :</code><code>$exp</code>
 <code>────────────────────</code>
-<i>Automatic Notification from Github</i>
-'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ🐳","url":"https://t.me/×××"},{"text":"ɪɴꜱᴛᴀʟʟ🐬","url":"https://t.me/×××"}]]}'
-"
-    curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+<b> FV STORE SCRIPT </b>
+<code>────────────────────</code>
+<i>Automatic Notifications From Github</i>
+"'&reply_markup={"inline_keyboard":[[{"text":" ᴏʀᴅᴇʀ🧊 ","url":"https://t.me/fv_stores"}]]}' 
+    curl -s --max-time 10 -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
 # Pasang SSL
@@ -535,10 +534,11 @@ print_success "Udp Custom"
 function udp_mini(){
 clear
 print_install "Memasang Service Limit IP/Quota & BadVPN"
+# // Installing Limit IP & Quota
 wget -qO- fv-tunnel "${REPO}example/fodder/fv-tunnel" | bash
 rm -rf fv-tunnel
 
-# // Installing UDP Mini
+# // Installing BadVPN
 mkdir -p /usr/local/kyt/
 wget -q -O /usr/local/kyt/udp-mini "${REPO}files/udp-mini"
 chmod +x /usr/local/kyt/udp-mini
@@ -928,7 +928,7 @@ clear
     menu
     profile
     enable_services
-    restart_system
+    notifikasi
 }
 instal
 echo ""
@@ -941,7 +941,7 @@ rm -rf /root/README.md
 rm -rf /root/domain
 rm -rf /root/udp
 secs_to_human "$(($(date +%s) - ${start}))"
-sudo hostnamectl set-hostname $USRSC
+sudo hostnamectl set-hostname $username
 echo -e "${green} Script Successfull Installed"
 echo ""
 read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Menu ") "
