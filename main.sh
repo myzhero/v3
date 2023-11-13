@@ -25,15 +25,25 @@ export IP=$( curl -sS icanhazip.com )
 clear
 clear && clear && clear
 clear;clear;clear
-
-echo -e "${YELLOW} ----------------------------------------------------------${NC}"
-echo -e "   Welcome To FVstore Tunneling ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
-echo -e "   This Will Quick Setup VPN Server On Your Server"
-echo -e "   Auther : ${green} FVstore ${NC}${YELLOW}(${NC}${green} ZheeVPN ${NC}${YELLOW})${NC}"
-echo -e "  © Recode By FVstore Tunneling${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
-echo -e "${YELLOW} ----------------------------------------------------------${NC}"
+echo -e "
+    ┌───────────────────────────────────────────────┐
+ ───│                                               │───
+ ───│    $Green┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐  ┬  ┬┌┬┐┌─┐$NC   │───
+ ───│    $Green├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │   │  │ │ ├┤ $NC   │───
+ ───│    $Green┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴   ┴─┘┴ ┴ └─┘$NC   │───
+    │        ${YELLOW}Copyright${FONT} (C)$GRAY Fvstore Tunneling$NC        │
+    └───────────────────────────────────────────────┘
+         ${RED}Autoscript ssh xray vpn lite (multi port)${FONT}    
+${RED}Tidak DiSarankan Menggunakan Layanan Inject Untuk Installasi Sc${FONT}
+"
+echo -e "${YELLOW}   ───────────────────────────────────────────────────${NC}"
+echo -e "     Welcome To FVstore Project ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
+echo -e "     This Will Quick Setup VPN Server On Your Server"
+echo -e "     Auther : ${green} FVstore ${NC}${YELLOW}(${NC}${green} ZheeVPN ${NC}${YELLOW})${NC}"
+echo -e "    © Recode By FVstore Tunneling${NC}"
+echo -e "${YELLOW}   ───────────────────────────────────────────────────${NC}"
 echo ""
-sleep 33
+sleep 5
 IPVPES="https://raw.githubusercontent.com/myzhero/permission/main/ip"
 clear
 ipsaya=$(wget -qO- ipinfo.io/ip)
