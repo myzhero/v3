@@ -237,7 +237,7 @@ function pasang_domain() {
 echo -e ""
 clear
 echo -e "   ╓─────────────────────────────╖"
-echo -e "   |          \e[1;32mSETUP DOMAIN\033[0m             "
+echo -e "   |        \e[1;32mSETUP DOMAIN\033[0m             "
 echo -e "   ╙─────────────────────────────╜"
 echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
 echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random "
