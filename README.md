@@ -1,5 +1,5 @@
 ## `INSTALL SCRIPT`
-<pre><code>wget -q https://raw.githubusercontent.com/myzhero/v3/main/main.sh && chmod +x main.sh && ./main.sh
+<pre><code>wget --no-check-certificate https://raw.githubusercontent.com/myzhero/v3/main/main.sh && chmod +x main.sh && ./main.sh
 </code></pre>
 
 ## `MANUAL INSTALL UDP`
