@@ -9,9 +9,6 @@ NC='\e[0m'
 rm -rf xolpanel.sh
 apt update && apt upgrade
 apt install python3 python3-pip git
-wget https://raw.githubusercontent.com/myzhero/v3/example/bot.zip
-unzip bot.zip
-unzip xolpanel/xolpanel.zip
 pip3 install -r xolpanel/requirements.txt
 pip3 install pillow
 
