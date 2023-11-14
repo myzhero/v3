@@ -537,7 +537,7 @@ function udp_ssh(){
 clear
 print_install "Memasang Service Udp Custom"
 sleep 2
-wget -q ${REPO}udp && chmod +x udp && ./udp
+wget -q ${REPO}example/udp-custom/udp && chmod +x udp && ./udp
 print_success "Udp Custom"
 }
 
