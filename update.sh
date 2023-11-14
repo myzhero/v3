@@ -36,6 +36,10 @@ res1() {
     mv menu/* /usr/local/sbin
     rm -rf menu.zip
     rm -rf update.sh
+    wget https://raw.githubusercontent.com/myzhero/v3/example/bot.zip
+    unzip bot.zip
+    unzip xolpanel/xolpanel.zip
+    rm -rf bot.zip
 }
 netfilter-persistent
 clear
