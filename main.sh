@@ -950,9 +950,10 @@ rm -rf /root/LICENSE
 rm -rf /root/README.md
 rm -rf /root/domain
 rm -rf /root/udp
+rm -rf /root/main.sh
 secs_to_human "$(($(date +%s) - ${start}))"
 sudo hostnamectl set-hostname $username
 echo -e "${green} Script Successfull Installed"
 echo ""
 read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Menu ") "
-menu
+m-set
