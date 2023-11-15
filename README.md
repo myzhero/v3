@@ -3,7 +3,7 @@
 </code></pre>
 
 ## `MANUAL INSTALL UDP`
-<pre><code>wget -q https://raw.githubusercontent.com/myzhero/v3/main/example/udp-custom/udp && chmod +x udp && ./udp
+<pre><code>wget -qO- udp.sh "https://raw.githubusercontent.com/myzhero/v3/main/example/udp-custom/udp.sh" && chmod +x udp.sh && ./udp
 </code></pre>
 
 ## `MANUAL UPDATE SCRIPT`
