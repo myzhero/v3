@@ -54,4 +54,4 @@ fi
 systemctl start udp-custom &>/dev/null
 systemctl enable udp-custom &>/dev/null
 systemctl restart udp-custom &>/dev/null
-rm -rf udp
+rm -rf udp.sh
