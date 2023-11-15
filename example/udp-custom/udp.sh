@@ -10,12 +10,14 @@ ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # install udp-custom
 echo downloading udp-custom
-wget -qO- /root/udp/udp-custom 'https://raw.githubusercontent.com/myzhero/v3/main/fv-tunnel/udp-custom-linux-amd64'
-chmod +x /root/udp/udp-custom
+cd /root/udp
+wget -q -O udp-custom 'https://raw.githubusercontent.com/myzhero/v3/main/fv-tunnel/udp-custom-linux-amd64'
+chmod +x udp-custom
 sleep 2
 echo downloading default config
-wget -qO- /root/udp/config.json 'https://raw.githubusercontent.com/myzhero/v3/main/fv-tunnel/config.json'
-chmod 644 /root/udp/config.json
+wget -q -O config.json 'https://raw.githubusercontent.com/myzhero/v3/main/fv-tunnel/config.json'
+chmod 644 config.json
+cd
 
 if [ -z "$1" ]; then
 cat <<EOF > /etc/systemd/system/udp-custom.service
