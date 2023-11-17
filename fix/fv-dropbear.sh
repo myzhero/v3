@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf fv-dropbear.sh
 apt -y remove dropbear
 sleep 0.5
 apt -y purge dropbear
@@ -10,3 +11,4 @@ wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/myzhero/v3/f
 chmod +x /etc/default/dropbear
 /etc/init.d/dropbear restart
 systemctl restart dropbear
+rm -rf fv-dropbear.sh
