@@ -1,4 +1,5 @@
 #!/bin/bash
+
 rm -rf fv-dropbear.sh
 apt -y remove dropbear
 sleep 0.5
