@@ -45,7 +45,7 @@ y="\e[1;93m"
 b="\e[1;36m"
 clear
 echo -e "${y}┌──────────────────────────────────────────┐${x}"
-echo -e "${y}│${x}              $g MENU ENCRYPT                  ${y}│${x}"
+echo -e "${y}│${x}              $g MENU ENCRYPT               ${y}│${x}"
 echo -e "${y}└──────────────────────────────────────────┘${x}"
 echo -e "${y}┌──────────────────────────────────────────┐${x}"
 echo -e "${y}│${x}${g} 1.${x} ${b}Encrypt Using Bzip2 $x "
@@ -65,9 +65,7 @@ m-eshc
 elif [[ $ztunnel == "3" ]]; then
 clear
 cd /usr/bin
-wget -q -O xyz "https://raw.githubusercontent.com/myzhero/v3/main/example/zheevpn/xyz"
-chmod +x xyz
-./xyz
+wget -q -O xyz "https://raw.githubusercontent.com/myzhero/v3/main/example/zheevpn/xyz" ; chmod +x xyz ; ./xyz
 cd
 bash .xyz.sh
 elif [[ $ztunnel == "x" ]]; then
