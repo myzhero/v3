@@ -7,7 +7,7 @@ TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="
 <code>────────────────────</code>
-<b>⚠️ NOTIFICATIONS MULTI LOGIN ⚠️</b>
+<b>⚠️ NOTIFIKASI MULTI LOGIN ⚠️</b>
 <code>────────────────────</code>
 <code>Username  : </code><code>$user</code>
 <code>Limit Ip    : </code><code>$data</code>
@@ -18,7 +18,7 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 function vmip(){
 #LIMITVMESSIP
 echo -n > /var/log/xray/access.log
-sleep 440
+sleep 300
 data=( `ls /etc/kyt/limit/vmess/ip`);
 #Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
@@ -43,7 +43,7 @@ data=( `ls /etc/kyt/limit/vmess/ip`);
 function vlip(){
 #LIMITVLESSIP
 echo -n > /var/log/xray/access.log
-sleep 440
+sleep 300
 data=( `ls /etc/kyt/limit/vless/ip`);
 #Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
@@ -68,7 +68,7 @@ data=( `ls /etc/kyt/limit/vless/ip`);
 function trip(){
 #LIMITIPTROJAN
 echo -n > /var/log/xray/access.log
-sleep 440
+sleep 300
 data=( `ls /etc/kyt/limit/trojan/ip`);
 #Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
@@ -93,7 +93,7 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
 
 function sship(){
 echo -n > /var/log/xray/access.log
-sleep 3
+sleep 300
 data=( `ls /etc/kyt/limit/ssh/ip`);
     for user in "${data[@]}"
     do
