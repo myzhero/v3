@@ -19,7 +19,7 @@ if test $# = 0; then
   echo  "          ${CYAN}=============================================================${NC}"
   echo  "          ${RED}#${NC}            ${GREEN} USAGE : ketik encbzip2 spasi namafile${NC}             ${RED} #${NC}"
   echo  " ${YELLOW}         -------------------------------------------------------------${NC}"
-  echo  "          ${RED}#${NC}          ${GREEN}   [ Copyright @ -  Delta-Project  (2023) ] ${NC}            ${RED}#${NC}"
+  echo  "          ${RED}#${NC}          ${GREEN}   [ Copyright @ -  ZheeVpn  (2023) ] ${NC}            ${RED}#${NC}"
    echo  "${BLUE}          =============================================================${NC}"
   exit 1
 fi
