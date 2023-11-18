@@ -1,7 +1,5 @@
 #!/bin/sh
 
-apt install bzip2 -y
-
 export RED='\033[0;31m'
 export GREEN='\033[0;32m'
 export YELLOW='\033[0;33m'
@@ -17,7 +15,7 @@ if test $# = 0; then
   echo  "          ${PURPLE}=============================================================${NC}"
   echo  "          ${RED}#----------------------${NC}${GREEN}[MENU  ENCRYPTER]${NC}${RED}--------------------#${NC}"
   echo  "          ${CYAN}=============================================================${NC}"
-  echo  "          ${RED}#${NC}            ${GREEN} USAGE : ketik encbzip2 spasi namafile${NC}             ${RED} #${NC}"
+  echo  "          ${RED}#${NC}            ${GREEN} Example : ketik xyz spasi filename${NC}             ${RED} #${NC}"
   echo  " ${YELLOW}         -------------------------------------------------------------${NC}"
   echo  "          ${RED}#${NC}          ${GREEN}   [ Copyright @ -  ZheeVpn  (2023) ] ${NC}            ${RED}#${NC}"
    echo  "${BLUE}          =============================================================${NC}"
