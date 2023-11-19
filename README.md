@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=A+U+T+O+S+C+R+I+P+T+BY+Zhee+VPN" />
+<img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=A+U+T+O+ +S+C+R+I+P+T+ +B+Y+ +Zhee+V+P+N" />
 </p>
 
 ## `INSTALL SCRIPT`
