@@ -22,7 +22,7 @@ cd
 if [ -z "$1" ]; then
 cat <<EOF > /etc/systemd/system/udp-custom.service
 [Unit]
-Description=UDP Custom by ePro Dev. Team
+Description=UDP 0P0K
 
 [Service]
 User=root
