@@ -1,24 +1,4 @@
 #!/bin/bash
-akuu="\033[33m" 
-merah="\033[1;31m" 
-g='\e[0;32m'
-NC='\033[0m'
-IP=$( curl -sS ipinfo.io/ip )
-#anu
-dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-biji=`date +"%Y-No such file or directory-0" -d "$dateFromServer"`
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
-
-#intro wak¡
-echo -e " ──────────────────────────────────────${NC}"
-echo -e "      ${g}.::.$NC Update Autoscript ${g}.::.${NC}"
-echo -e " ──────────────────────────────────────${NC}"
-echo -e "   ${g}    Autoscript has been updated${NC}"
-echo -e "  ${akuu} Your VPS$NC${merah} ${IP} $NC ${akuu}Update script${NC}"
-#echo -e "  ${akuu}       Feature new info for scripts${NC}"
-echo -e "  ──────────────────────────────────────${NC}"
-echo -e "          CTRL + C TO BACK MENU${NC}"
-read -n 1 -s -r -p "  Press enter update server"
 clear
 fun_bar() {
     CMD[0]="$1"
@@ -33,7 +13,7 @@ fun_bar() {
     echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
     while true; do
         for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[0;32m🌐"
+            echo -ne "\033[0;32m="
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -56,13 +36,13 @@ res1() {
 }
 netfilter-persistent
 clear
-echo -e " ──────────────────────────────────────${NC}"
-echo -e "      ${g}    $NC Update Autoscript ${g}    ${NC}"
-echo -e " ──────────────────────────────────────${NC}"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
+echo -e " \e[1;97;101m          UPDATE SCRIPT                 \e[0m"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
-echo -e "  \033[1;91m update script service\033[1;37m"
+echo -e "  \033[1;91m Update Script Service\033[1;37m"
 fun_bar 'res1'
-echo -e " ──────────────────────────────────────${NC}"
+echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
-read -n 1 -s -r -p "Press [ Enter ] to menu"
+read -n 1 -s -r -p "Press [ Enter ] to back on menu"
 menu
