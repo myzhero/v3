@@ -14,7 +14,7 @@ GRAY="\e[1;30m"
 NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
-CHATID="-1001899398362"
+CHATID="-1001918138817"
 KEY="6293396608:AAGqZVrmdQjPc3tOj_gnUoWOVMrBsm8v6Xo"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 # ===================
@@ -31,16 +31,16 @@ echo -e "
  ───│    $Green┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐  ┬  ┬┌┬┐┌─┐$NC   │───
  ───│    $Green├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │   │  │ │ ├┤ $NC   │───
  ───│    $Green┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴   ┴─┘┴ ┴ └─┘$NC   │───
-    │        ${YELLOW}Copyright${FONT} (C)$GRAY Fvstore Tunneling$NC        │
+    │        ${YELLOW}Copyright${FONT} (C)$GRAY ZheeVPN Tunneling$NC        │
     └───────────────────────────────────────────────┘
          ${RED}Autoscript ssh xray vpn lite (multi port)${FONT}    
 ${RED}Tidak DiSarankan Menggunakan Layanan Inject Untuk Installasi Sc${FONT}
 "
 echo -e "${YELLOW}   ───────────────────────────────────────────────────${NC}"
-echo -e "     Welcome To FVstore Project ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
+echo -e "     Welcome To ZheeVPN Project ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e "     This Will Quick Setup VPN Server On Your Server"
 echo -e "     Auther : ${green} FVstore ${NC}${YELLOW}(${NC}${green} ZheeVPN ${NC}${YELLOW})${NC}"
-echo -e "    © Recode By FVstore Tunneling${NC}"
+echo -e "    © Recode By ZheeVPN Tunneling${NC}"
 echo -e "${YELLOW}   ───────────────────────────────────────────────────${NC}"
 echo ""
 sleep 5
@@ -62,7 +62,7 @@ checking_sc() {
     echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
     echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
     echo -e "             \033[0;33mContact Admin :${NC}"
-    echo -e "      \033[0;36mTelegram${NC} t.me/6283160098834"
+    echo -e "      \033[0;36mWhatsapp${NC} wa.me/6285935195701"
     echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
     exit
   fi
@@ -284,9 +284,9 @@ echo -e "   ╓─────────────────────�
 echo -e "   |        \e[1;32mSETUP DOMAIN\033[0m             "
 echo -e "   ╙─────────────────────────────╜"
 echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random "
+echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random"
 echo -e "   ------------------------------------"
-read -p "   Choose Options From ( 1 - 2 ) : " host
+read -p "   Choose Options From [ 1 - 2 ] : " host
 echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mMasukan Domain Kamu !$NC"
@@ -313,7 +313,7 @@ exp=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | gr
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 TEXT="
 <code>────────────────────</code>
-<b>⚡AUTOSCRIPT PREMIUM⚡</b>
+<b>⚡NOTIFICATION INSTALL⚡</b>
 <code>────────────────────</code>
 <code>User     :</code><code>$username</code>
 <code>Domain   :</code><code>$domain</code>
@@ -323,10 +323,11 @@ TEXT="
 <code>Time     :</code><code>$TIMEZONE</code>
 <code>Expired  :</code><code>$exp</code>
 <code>────────────────────</code>
-<b> FV STORE SCRIPT </b>
+<b> ZheeVPN SCRIPT </b>
 <code>────────────────────</code>
 <i>Automatic Notifications From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":" ᴏʀᴅᴇʀ🧊 ","url":"https://t.me/fv_stores"}]]}' 
+<i>ZheeVPN</i>
+"'&reply_markup={"inline_keyboard":[[{"text":" ᴏʀᴅᴇʀ🧊 ","url":"https://t.me/zheevpn"}]]}' 
     curl -s --max-time 10 -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
