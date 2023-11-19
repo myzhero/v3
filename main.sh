@@ -313,7 +313,8 @@ exp=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | gr
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 TEXT="
 <code>────────────────────</code>
-<b>⚡NOTIFICATION INSTALL⚡</b>
+<b>NOTIFICATION INSTALL</b>
+<b>SCRIPT ZheeVPN</b>
 <code>────────────────────</code>
 <code>User     :</code><code>$username</code>
 <code>Domain   :</code><code>$domain</code>
@@ -323,11 +324,8 @@ TEXT="
 <code>Time     :</code><code>$TIMEZONE</code>
 <code>Expired  :</code><code>$exp</code>
 <code>────────────────────</code>
-<b> ZheeVPN SCRIPT </b>
-<code>────────────────────</code>
-<i>Automatic Notifications From Github</i>
-<i>ZheeVPN</i>
-"'&reply_markup={"inline_keyboard":[[{"text":" ᴏʀᴅᴇʀ🧊 ","url":"https://t.me/zheevpn"}]]}' 
+<i>Automatic Notifications From ZheeVpn BOT</i>
+"'&reply_markup={"inline_keyboard":[[{"text":" 『 ʙᴜʏ ꜱᴄʀɪᴘᴛ 』 ","url":"https://t.me/zheevpn"}]]}' 
     curl -s --max-time 10 -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 clear
