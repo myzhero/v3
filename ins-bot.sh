@@ -9,11 +9,11 @@ NC='\e[0m'
 apt update && apt upgrade
 apt install python3 python3-pip git
 cd /usr/bin
-wget https://raw.githubusercontent.com/myzhero/v3/main/files/bot.zip
-unzip bot.zip
-mv bot/* /usr/bin
-chmod +x /usr/bin/*
-rm -rf bot.zip
+#wget https://raw.githubusercontent.com/myzhero/v3/main/files/bot.zip
+#unzip bot.zip
+#mv bot/* /usr/bin
+#chmod +x /usr/bin/*
+#rm -rf bot.zip
 clear
 wget https://raw.githubusercontent.com/myzhero/v3/main/files/kyt.zip
 unzip kyt.zip
