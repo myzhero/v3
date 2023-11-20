@@ -30,7 +30,7 @@
        "streamSettings":{
          "network": "ws",
             "wsSettings": {
-                "path": "/vless"
+                "path": "/zhee-vless"
           }
         }
      },
@@ -103,7 +103,7 @@
            "clients": [
               {
                  "password": "cfbbaafc-8d52-450c-9fb0-145bc8221e6d"
-#trojanws
+#trojan
               }
           ],
          "udp": true
@@ -111,7 +111,7 @@
        "streamSettings":{
            "network": "ws",
            "wsSettings": {
-               "path": "/trojan-ws"
+               "path": "/zhee-trojan"
             }
          }
      },
