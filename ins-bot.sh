@@ -5,6 +5,10 @@ domain=$(cat /etc/xray/domain)
 #color
 grenbo="\e[92;1m"
 NC='\e[0m'
+b="\033[1;36m"
+bg="\e[1;97;101m"
+g="\e[1;92m"
+RED="\e[1;31m"
 #install
 apt update && apt upgrade
 apt install python3 python3-pip git
@@ -22,13 +26,13 @@ pip3 install -r kyt/requirements.txt
 #isi data
 clear
 echo ""
-echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e " \e[1;97;101m             ADD BOT PANEL              \e[0m"
-echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
+echo -e " ${bg}             ADD BOT PANEL              ${NC}"
+echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
 echo -e "${grenbo}Tutorial Creat Bot and ID Telegram${NC}"
 echo -e "${grenbo}[*] Creat Bot and Token Bot : @BotFather${NC}"
 echo -e "${grenbo}[*] Info Id Telegram : @MissRose_bot , perintah /info${NC}"
-echo -e "\033[1;36m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "${b}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
 read -e -p "[*] Input your Bot Token : " bottoken
 read -e -p "[*] Input Your Id Telegram :" admin
 echo -e BOT_TOKEN='"'$bottoken'"' >> /usr/bin/kyt/var.txt
@@ -56,17 +60,25 @@ systemctl start kyt
 systemctl enable kyt
 systemctl restart kyt
 cd /root
-rm -rf kyt.sh
-echo "Done"
-echo "Your Data Bot"
-echo -e "==============================="
-echo "Token Bot         : $bottoken"
-echo "Admin          : $admin"
-echo "Domain        : $domain"
-echo "Pub            : $PUB"
-echo "Host           : $NS"
-echo -e "==============================="
-echo "Setting done"
-echo " Installations complete, type /menu on your bot"
-sleep 2 
+
+bott=$(systemctl status kyt | grep running | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+# STATUS SERVICE BOT
+if [[ $bott == "running" ]]; then 
+   status_bott="${g}Online$NC"
+   else
+   status_bott="${RED}Offline${NC} "
+fi
+
+rm -rf ins-bot.sh
+echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
+echo -e "              INFO BOT PANEL             ${NC}"
+echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
+echo -e " .::. Status BOT = $status_bott "
+echo ""
+echo -e " .::. Token BOT = $bottoken"
+echo -e " .::. Admin ID  = $admin"
+echo -e " .::. Dubdomain = $domain"
+echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
+echo -e " Installations complete, type /menu or .menu on your bot "
+read -p "Press Enter For Back To Menu"
 menu
