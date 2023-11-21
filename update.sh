@@ -13,7 +13,7 @@ fun_bar() {
     echo -ne "  \033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m["
     while true; do
         for ((i = 0; i < 18; i++)); do
-            echo -ne "\033[0;32m="
+            echo -ne "\033[0;32m#"
             sleep 0.1s
         done
         [[ -e $HOME/fim ]] && rm $HOME/fim && break
@@ -37,7 +37,7 @@ res1() {
 netfilter-persistent
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-echo -e " \e[1;97;101m          UPDATE SCRIPT                 \e[0m"
+echo -e " \e[1;97;101m            UPDATE SCRIPT               \e[0m"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
 echo -e "  \033[1;91m Update Script Service\033[1;37m"
