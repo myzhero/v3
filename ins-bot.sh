@@ -71,7 +71,7 @@ fi
 
 rm -rf ins-bot.sh
 echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
-echo -e "              INFO BOT PANEL             ${NC}"
+echo -e "        $g .::. ${NC}INFO BOT PANEL${g} .::.        ${NC}"
 echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
 echo -e " • Status BOT = $status_bott "
 echo ""
