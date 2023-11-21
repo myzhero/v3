@@ -1,0 +1,360 @@
+#!/bin/bash
+
+REPO="https://raw.githubusercontent.com/myzhero/v3/main/"
+
+# Instal DDOS Flate
+if [ -d '/usr/local/ddos' ]; then
+	echo; echo; echo "Please un-install the previous version first"
+	exit 0
+else
+	mkdir /usr/local/ddos
+fi
+
+clear
+# banner
+echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
+sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
+
+# Ganti Banner
+wget -O /etc/kyt.txt "${REPO}files/issue.net"
+
+clear
+print_install "Menginstall ePro WebSocket Proxy"
+    wget -O /usr/bin/ws "${REPO}files/ws" >/dev/null 2>&1
+    wget -O /usr/bin/tun.conf "${REPO}files/tun.conf" >/dev/null 2>&1
+    wget -O /etc/systemd/system/ws.service "${REPO}files/ws.service" >/dev/null 2>&1
+    chmod +x /etc/systemd/system/ws.service
+    chmod +x /usr/bin/ws
+    chmod 644 /usr/bin/tun.conf
+systemctl disable ws
+systemctl stop ws
+systemctl enable ws
+systemctl start ws
+systemctl restart ws
+wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
+wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
+wget -O /usr/sbin/ftvpn "${REPO}files/ftvpn" >/dev/null 2>&1
+chmod +x /usr/sbin/ftvpn
+iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
+iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
+iptables -A FORWARD -m string --string "find_node" --algo bm -j DROP
+iptables -A FORWARD -m string --algo bm --string "BitTorrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo bm --string "peer_id=" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
+iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
+iptables-save > /etc/iptables.up.rules
+iptables-restore -t < /etc/iptables.up.rules
+netfilter-persistent save
+netfilter-persistent reload
+
+# remove unnecessary files
+cd
+apt autoclean -y >/dev/null 2>&1
+apt autoremove -y >/dev/null 2>&1
+
+clear
+print_install "Restarting  All Packet"
+/etc/init.d/nginx restart
+/etc/init.d/openvpn restart
+/etc/init.d/ssh restart
+/etc/init.d/dropbear restart
+/etc/init.d/fail2ban restart
+/etc/init.d/vnstat restart
+systemctl restart haproxy
+/etc/init.d/cron restart
+    systemctl daemon-reload
+    systemctl start netfilter-persistent
+    systemctl enable --now nginx
+    systemctl enable --now xray
+    systemctl enable --now rc-local
+    systemctl enable --now dropbear
+    systemctl enable --now openvpn
+    systemctl enable --now cron
+    systemctl enable --now haproxy
+    systemctl enable --now netfilter-persistent
+    systemctl enable --now ws
+    systemctl enable --now fail2ban
+history -c
+echo "unset HISTFILE" >> /etc/profile
+
+cd
+rm -f /root/openvpn
+rm -f /root/key.pem
+rm -f /root/cert.pem
+    clear
+    print_install "Memasang Menu Packet"
+    wget ${REPO}files/menu.zip
+    unzip menu.zip
+    chmod +x menu/*
+    mv menu/* /usr/local/sbin
+    rm -rf menu
+    rm -rf menu.zip
+
+# Membaut Default Menu 
+clear
+    cat >/root/.profile <<EOF
+# ~/.profile: executed by Bourne-compatible login shells.
+if [ "$BASH" ]; then
+    if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+    fi
+fi
+mesg n || true
+clear
+menu
+EOF
+
+cat >/etc/cron.d/xp_all <<-END
+		SHELL=/bin/sh
+# Instal DDOS Flate
+if [ -d '/usr/local/ddos' ]; then
+	echo; echo; echo "Please un-install the previous version first"
+	exit 0
+else
+	mkdir /usr/local/ddos
+fi
+
+clear
+# banner
+echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
+sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
+
+# Ganti Banner
+wget -O /etc/kyt.txt "${REPO}files/issue.net"
+print_success "Fail2ban"
+}
+
+function ins_epro(){
+clear
+print_install "Menginstall ePro WebSocket Proxy"
+    wget -O /usr/bin/ws "${REPO}files/ws" >/dev/null 2>&1
+    wget -O /usr/bin/tun.conf "${REPO}files/tun.conf" >/dev/null 2>&1
+    wget -O /etc/systemd/system/ws.service "${REPO}files/ws.service" >/dev/null 2>&1
+    chmod +x /etc/systemd/system/ws.service
+    chmod +x /usr/bin/ws
+    chmod 644 /usr/bin/tun.conf
+systemctl disable ws
+systemctl stop ws
+systemctl enable ws
+systemctl start ws
+systemctl restart ws
+wget -q -O /usr/local/share/xray/geosite.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat" >/dev/null 2>&1
+wget -q -O /usr/local/share/xray/geoip.dat "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat" >/dev/null 2>&1
+wget -O /usr/sbin/ftvpn "${REPO}files/ftvpn" >/dev/null 2>&1
+chmod +x /usr/sbin/ftvpn
+iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
+iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
+iptables -A FORWARD -m string --string "find_node" --algo bm -j DROP
+iptables -A FORWARD -m string --algo bm --string "BitTorrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
+iptables -A FORWARD -m string --algo bm --string "peer_id=" -j DROP
+iptables -A FORWARD -m string --algo bm --string ".torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce.php?passkey=" -j DROP
+iptables -A FORWARD -m string --algo bm --string "torrent" -j DROP
+iptables -A FORWARD -m string --algo bm --string "announce" -j DROP
+iptables -A FORWARD -m string --algo bm --string "info_hash" -j DROP
+iptables-save > /etc/iptables.up.rules
+iptables-restore -t < /etc/iptables.up.rules
+netfilter-persistent save
+netfilter-persistent reload
+
+# remove unnecessary files
+cd
+apt autoclean -y >/dev/null 2>&1
+apt autoremove -y >/dev/null 2>&1
+clear
+print_install "Restarting  All Packet"
+/etc/init.d/nginx restart
+/etc/init.d/openvpn restart
+/etc/init.d/ssh restart
+/etc/init.d/dropbear restart
+/etc/init.d/fail2ban restart
+/etc/init.d/vnstat restart
+systemctl restart haproxy
+/etc/init.d/cron restart
+    systemctl daemon-reload
+    systemctl start netfilter-persistent
+    systemctl enable --now nginx
+    systemctl enable --now xray
+    systemctl enable --now rc-local
+    systemctl enable --now dropbear
+    systemctl enable --now openvpn
+    systemctl enable --now cron
+    systemctl enable --now haproxy
+    systemctl enable --now netfilter-persistent
+    systemctl enable --now ws
+    systemctl enable --now fail2ban
+history -c
+echo "unset HISTFILE" >> /etc/profile
+
+cd
+rm -f /root/openvpn
+rm -f /root/key.pem
+rm -f /root/cert.pem
+
+    clear
+    print_install "Memasang Menu Packet"
+    wget ${REPO}files/menu.zip
+    unzip menu.zip
+    chmod +x menu/*
+    mv menu/* /usr/local/sbin
+    rm -rf menu
+    rm -rf menu.zip
+
+
+# Membaut Default Menu 
+clear
+    cat >/root/.profile <<EOF
+# ~/.profile: executed by Bourne-compatible login shells.
+if [ "$BASH" ]; then
+    if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+    fi
+fi
+mesg n || true
+clear
+menu
+EOF
+
+cat >/etc/cron.d/xp_all <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		2 0 * * * root /usr/local/sbin/xp
+	END
+cat >/etc/cron.d/limit-ip-ssh <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		2 0 * * * root /usr/local/sbin/limit-ip-ssh
+	END
+	cat >/etc/cron.d/logclean <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		*/20 * * * * root /usr/local/sbin/clearlog
+		END
+    chmod 644 /root/.profile
+	
+    cat >/etc/cron.d/daily_reboot <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		0 5 * * * root /sbin/reboot
+	END
+
+    echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
+    echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
+    service cron restart
+    cat >/home/daily_reboot <<-END
+		5
+	END
+
+cat >/etc/systemd/system/rc-local.service <<EOF
+[Unit]
+Description=/etc/rc.local
+ConditionPathExists=/etc/rc.local
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+[Install]
+WantedBy=multi-user.target
+EOF
+
+echo "/bin/false" >>/etc/shells
+echo "/usr/sbin/nologin" >>/etc/shells
+cat >/etc/rc.local <<EOF
+#!/bin/sh -e
+# rc.local
+# By default this script does nothing.
+iptables -I INPUT -p udp --dport 5300 -j ACCEPT
+iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
+systemctl restart netfilter-persistent
+exit 0
+EOF
+
+    chmod +x /etc/rc.local
+    
+    AUTOREB=$(cat /home/daily_reboot)
+    SETT=11
+    if [ $AUTOREB -gt $SETT ]; then
+        TIME_DATE="PM"
+    else
+        TIME_DATE="AM"
+    fi
+
+clear
+print_install "Enable Service"
+    systemctl daemon-reload
+    systemctl start netfilter-persistent
+    systemctl enable --now rc-local
+    systemctl enable --now cron
+    systemctl enable --now netfilter-persistent
+    systemctl enable udp-custom
+    systemctl restart nginx
+    systemctl restart xray
+    systemctl restart cron
+    systemctl restart haproxy
+    systemctl restart udp-custom
+    print_success "Enable Service"
+    clear
+}￼Enter		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		2 0 * * * root /usr/local/sbin/xp
+	END
+cat >/etc/cron.d/limit-ip-ssh <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		2 0 * * * root /usr/local/sbin/limit-ip-ssh
+	END
+	cat >/etc/cron.d/logclean <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		*/20 * * * * root /usr/local/sbin/clearlog
+		END
+    chmod 644 /root/.profile
+	
+    cat >/etc/cron.d/daily_reboot <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		0 5 * * * root /sbin/reboot
+	END
+
+    echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
+    echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
+    service cron restart
+    cat >/home/daily_reboot <<-END
+		5
+	END
+
+etc/systemd/system/rc-local.service <<EOF
+[Unit]
+Description=/etc/rc.local
+ConditionPathExists=/etc/rc.local
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+[Install]
+WantedBy=multi-user.target
+EOF
+
+echo "/bin/false" >>/etc/shells
+echo "/usr/sbin/nologin" >>/etc/shells
+cat >/etc/rc.local <<EOF
+#!/bin/sh -e
+# rc.local
+# By default this script does nothing.
+iptables -I INPUT -p udp --dport 5300 -j ACCEPT
+iptables -t nat -I PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 5300
+systemctl restart netfilter-persistent
+exit 0
+EOF
+
+    chmod +x /etc/rc.local
