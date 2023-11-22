@@ -307,9 +307,47 @@ clear
 }
 
 clear
-notifikasi(){
-username=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $2}')
-exp=$(curl -sS https://raw.githubusercontent.com/myzhero/permission/main/ip | grep $MYIP | awk '{print $3}')
+function notifikasi(){
+url_izin="https://raw.githubusercontent.com/myzhero/permission/main/ip"
+rm -f /usr/bin/user
+rm -f /usr/bin/e
+username=$(curl -sS $url_izin | grep $MYIP | awk '{print $2}')
+valid=$(curl -sS $url_izin | grep $MYIP | awk '{print $3}')
+echo "$username" >/usr/bin/user
+echo "$valid" >/usr/bin/e
+# DETAIL ORDER
+username=$(cat /usr/bin/user)
+oid=$(cat /usr/bin/ver)
+exp=$(cat /usr/bin/e)
+clear
+# CERTIFICATE STATUS
+d1=$(date -d "$valid" +%s)
+d2=$(date -d "$today" +%s)
+certifacate=$(((d1 - d2) / 86400))
+# VPS Information
+DATE=$(date +'%Y-%m-%d')
+datediff() {
+    d1=$(date -d "$1" +%s)
+    d2=$(date -d "$2" +%s)
+    echo -e "$COLOR1 $NC Expiry In   : $(( (d1 - d2) / 86400 )) Days"
+}
+mai="datediff "$Exp" "$DATE""
+
+# Status Expired or Active
+Info="(${green}Active${NC})"
+Error="(${RED}ExpiRED${NC})"
+today=`date -d "0 days" +"%Y-%m-%d"`
+Exp1=$(curl -sS $url_izin | grep $MYIP | awk '{print $3}')
+if [[ $today < $Exp1 ]]; then
+sts="${Info}"
+else
+sts="${Error}"
+fi
+clear
+DATEVPS=$(date +'%d-%m-%Y')
+CHATID="-1001918138817"
+KEY="6293396608:AAGqZVrmdQjPc3tOj_gnUoWOVMrBsm8v6Xo"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
 TIMEZONE=$(printf '%(%H:%M:%S)T')
 TEXT="
 <code>────────────────────</code>
