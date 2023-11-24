@@ -857,8 +857,7 @@ if [ "$BASH" ]; then
     fi
 fi
 mesg n || true
-clear
-menu
+zheesc
 EOF
 
 cat >/etc/cron.d/xp_all <<-END
@@ -994,4 +993,4 @@ sudo hostnamectl set-hostname $username
 echo -e "${green} Script Successfull Installed"
 echo ""
 read -p "$( echo -e "Press ${YELLOW}[ ${NC}${YELLOW}Enter${NC} ${YELLOW}]${NC} For Menu ") "
-m-set
+zheesc
