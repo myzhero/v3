@@ -78,7 +78,25 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+
+# // SERVICE LIMIT IP SSH
+cat >/etc/systemd/system/sship.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip sship
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 systemctl daemon-reload
+systemctl restart sship
+systemctl enable sship
 systemctl restart vmip
 systemctl enable vmip
 systemctl restart vlip
