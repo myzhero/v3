@@ -11,6 +11,7 @@ TEXT="
 <code>────────────────────</code>
 <code>Username  : </code><code>$user</code>
 <code>Limit Ip    : </code><code>$data</code>
+<code>Login Ip    : </code><code>$cekcek</code>
 <code>────────────────────</code>
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
@@ -18,9 +19,8 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 function vmip(){
 #LIMITVMESSIP
 echo -n > /var/log/xray/access.log
-sleep 300
+sleep 1
 data=( `ls /etc/kyt/limit/vmess/ip`);
-#Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/kyt/limit/vmess/ip/$user)
@@ -32,7 +32,9 @@ data=( `ls /etc/kyt/limit/vmess/ip`);
                   sed -i "/^### $user $exp/d" /etc/vmess/.vmess.db
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/ipvmess.txt | wc -l)
+                  rm -rf /etc/vmess/$user
                   rm -rf /etc/kyt/limit/vmess/ip/$user
+                  rm -rf /etc/user/vmess/$user.txt
                   send_log
                 else
             echo ""
@@ -43,9 +45,8 @@ data=( `ls /etc/kyt/limit/vmess/ip`);
 function vlip(){
 #LIMITVLESSIP
 echo -n > /var/log/xray/access.log
-sleep 300
+sleep 1
 data=( `ls /etc/kyt/limit/vless/ip`);
-#Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/kyt/limit/vless/ip/$user)
@@ -57,7 +58,9 @@ data=( `ls /etc/kyt/limit/vless/ip`);
                   sed -i "/^### $user $exp/d" /etc/vless/.vless.db
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/ipvless.txt | wc -l)
+                  rm -rf /etc/vless/$user
                   rm -rf /etc/kyt/limit/vless/ip/$user
+                  rm -rf /etc/user/vless/$user.txt
                   send_log
                 else
             echo ""
@@ -68,9 +71,8 @@ data=( `ls /etc/kyt/limit/vless/ip`);
 function trip(){
 #LIMITIPTROJAN
 echo -n > /var/log/xray/access.log
-sleep 300
+sleep 1
 data=( `ls /etc/kyt/limit/trojan/ip`);
-#Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/kyt/limit/trojan/ip/$user)
@@ -82,7 +84,9 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
                   sed -i "/^### $user $exp/d" /etc/trojan/.trojan.db
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/iptrojan.txt | wc -l)
+                  rm -rf /etc/trojan/$user
                   rm -rf /etc/kyt/limit/trojan/ip/$user
+                  rm -rf /etc/user/trojan/$user.txt
                   send_log
                 else
             echo ""
@@ -92,22 +96,25 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
 }
 
 function sship(){
-echo -n > /var/log/xray/access.log
-sleep 300
+mulog=$(cekssh)
+date=$(date)
 data=( `ls /etc/kyt/limit/ssh/ip`);
-    for user in "${data[@]}"
-    do
-    iplimit=$(cat /etc/kyt/limit/ssh/ip/$user)
-    ehh=$(cat /var/log/xray/access.log | grep "$user" | cut -d " " -f 3 | sed 's/tcp://g' | cut -d ":" -f 1 | sort | uniq);
-    cekcek=$(echo -e "$ehh" | wc -l);
-    if [[ $cekcek -gt $iplimit ]]; then
-        send_log
-        userdel --force $user
-    else
-      echo ""
-    fi
+for user in "${data[@]}"
+do
+iplimit=$(cat /etc/kyt/limit/ssh/ip/$user)
+cekcek=$(echo -e "$mulog" | grep $user | wc -l);
+if [[ $cekcek -gt $iplimit ]]; then
+send_log
+egrep "^$user" /etc/passwd >/dev/null
+passwd -l $user
+systemctl restart ws
+echo -e "$waktu\nRemoved User: $user Login: $cekcek IP Max: $ip IP \n" >> /etc/kyt/log/ssh/ssh.log
+send_log
+else
+echo > /dev/null
+fi
+sleep 0.1
 done
-systemctl reload ssh
 }
 
 
