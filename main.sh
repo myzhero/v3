@@ -557,11 +557,11 @@ print_install "Memasang Service Limit IP/Quota & BadVPN"
 wget -qO- fv-tunnel "${REPO}example/fodder/fv-tunnel" | bash
 rm -rf fv-tunnel
 
-wget ${REPO}example/fodder/module/zhee-bot.zip
-unzip zhee-bot.zip
-mv zhee-bot/* /usr/bin
-chmod +x /usr/bin/*
-rm -rf zhee-bot.zip
+#wget ${REPO}example/fodder/module/zhee-bot.zip
+#unzip zhee-bot.zip
+#mv zhee-bot/* /usr/bin
+#chmod +x /usr/bin/*
+#rm -rf zhee-bot.zip
 
 # // Installing BadVPN
 mkdir -p /usr/local/kyt/
