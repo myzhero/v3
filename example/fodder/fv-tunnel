@@ -34,6 +34,13 @@ cd /usr/bin
 sed -i 's/\r//' limit-ip
 cd
 clear
+cd
+wget -q -O /usr/bin/limit-ip-ssh "${REPO}example/fodder/limit/limit-ip-ssh"
+chmod +x /usr/bin/*
+cd /usr/bin
+sed -i 's/\r//' limit-ip-ssh
+cd
+clear
 # // SERVICE LIMIT IP VMESS
 cat >/etc/systemd/system/vmip.service << EOF
 [Unit]
@@ -78,12 +85,34 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
+
+# // SERVICE LIMIT IP SSH
+cat >/etc/systemd/system/sship.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip-ssh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
 systemctl daemon-reload
-systemctl restart vmip
+systemctl start sship
+systemctl start vmip
+systemctl start vlip
+systemctl start trip
+systemctl enable sship
 systemctl enable vmip
-systemctl restart vlip
 systemctl enable vlip
-systemctl restart trip
 systemctl enable trip
+systemctl restart vmip
+systemctl restart vlip
+systemctl restart trip
+systemctl restart sship
 
 rm -rf /root/fv-tunnel
