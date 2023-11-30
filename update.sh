@@ -33,11 +33,9 @@ res1() {
     mv menu/* /usr/local/sbin
     rm -rf menu.zip
     rm -rf update.sh
-wget https://raw.githubusercontent.com/myzhero/v3/main/example/fodder/module/zhee-bot.zip
-unzip zhee-bot.zip
-mv zhee-bot/* /usr/bin
-chmod +x /usr/bin/*
-rm -rf zhee-bot.zip
+wget https://raw.githubusercontent.com/myzhero/v3/main/example/fodder/fv-tunnel
+chmod +x fv-tunnel
+./ fv-tunnel
 }
 netfilter-persistent
 clear
