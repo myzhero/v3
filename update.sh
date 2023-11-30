@@ -33,14 +33,19 @@ res1() {
     mv menu/* /usr/local/sbin
     rm -rf menu.zip
     rm -rf update.sh
-wget https://raw.githubusercontent.com/myzhero/v3/main/example/fodder/fv-tunnel
-chmod +x fv-tunnel
-./ fv-tunnel
+wget -qO- zhe-limit "https://raw.githubusercontent.com/myzhero/v3/main/example/fodder/fv-tunnel"
+chmod +x zhe-limit
+bash zhe-limit
+rm -rf zhe-limit
+wget -qO- sdns "https://raw.githubusercontent.com/myzhero/v3/main/files/nameserver"
+chmod +x sdns
+bash sdns
+rm -rf sdns
 }
 netfilter-persistent
 clear
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-echo -e " \e[1;97;101m             UPDATE SCRIPT              \e[0m"
+echo -e " \e[1;97;101m             UPDATE SCRIPT 🧊            \e[0m"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo -e ""
 echo -e "  \033[1;91m Update Script Service\033[1;37m"
