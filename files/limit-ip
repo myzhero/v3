@@ -95,37 +95,12 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
     done
 }
 
-function sship(){
-mulog=$(cekssh)
-date=$(date)
-data=( `ls /etc/kyt/limit/ssh/ip`);
-for user in "${data[@]}"
-do
-iplimit=$(cat /etc/kyt/limit/ssh/ip/$user)
-cekcek=$(echo -e "$mulog" | grep $user | wc -l);
-if [[ $cekcek -gt $iplimit ]]; then
-send_log
-egrep "^$user" /etc/passwd >/dev/null
-passwd -l $user
-systemctl restart ws
-echo -e "$waktu\nRemoved User: $user Login: $cekcek IP Max: $ip IP \n" >> /etc/kyt/log/ssh/ssh.log
-send_log
-else
-echo > /dev/null
-fi
-sleep 0.1
-done
-}
-
-
 if [[ ${1} == "vmip" ]]; then
 vmip
 elif [[ ${1} == "vlip" ]]; then
 vlip
 elif [[ ${1} == "trip" ]]; then
 trip
-elif [[ ${1} == "sship" ]]; then
-sship
 fi
 
 
