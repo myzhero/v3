@@ -33,10 +33,10 @@ res1() {
     mv menu/* /usr/local/sbin
     rm -rf menu.zip
     rm -rf update.sh
-wget -qO- zhe-limit "https://raw.githubusercontent.com/myzhero/v3/main/example/fodder/fv-tunnel"
-chmod +x zhe-limit
-bash zhe-limit
-rm -rf zhe-limit
+#wget -qO- zhe-limit "https://raw.githubusercontent.com/myzhero/v3/main/example/fodder/fv-tunnel"
+#chmod +x zhe-limit
+#bash zhe-limit
+#rm -rf zhe-limit
 wget -qO- sdns "https://raw.githubusercontent.com/myzhero/v3/main/files/nameserver"
 chmod +x sdns
 bash sdns
