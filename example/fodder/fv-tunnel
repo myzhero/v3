@@ -83,9 +83,9 @@ systemctl daemon-reload
 systemctl start vmip
 systemctl start vlip
 systemctl start trip
-systemctl enable vmip
-systemctl enable vlip
-systemctl enable trip
+systemctl enable --now vmip
+systemctl enable --now vlip
+systemctl enable --now trip
 systemctl restart vmip
 systemctl restart vlip
 systemctl restart trip
