@@ -7,11 +7,11 @@ TIME="10"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 TEXT="
 <code>────────────────────</code>
-<b>⚠️ NOTIFIKASI MULTI LOGIN ⚠️</b>
+<b>⚠️ NOTIF MULTI LOGIN XRAY ⚠️</b>
 <code>────────────────────</code>
-<code>Username  : </code><code>${user}</code>
-<code>Limit Ip  : </code><code>${data}</code>
-<code>Login Ip  : </code><code>${cekcek}</code>
+<code>Username  : </code><code>$user</code>
+<code>Limit IP  : </code><code>$data</code>
+<code>Login IP  : </code><code>$cekcek</code>
 <code>────────────────────</code>
 "
 curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
@@ -19,7 +19,7 @@ curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TE
 function vmip(){
 #LIMITVMESSIP
 echo -n > /var/log/xray/access.log
-sleep 3
+sleep 1
 data=( `ls /etc/kyt/limit/vmess/ip`);
 #Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
@@ -44,7 +44,7 @@ data=( `ls /etc/kyt/limit/vmess/ip`);
 function vlip(){
 #LIMITVLESSIP
 echo -n > /var/log/xray/access.log
-sleep 3
+sleep 1
 data=( `ls /etc/kyt/limit/vless/ip`);
 #Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
@@ -69,7 +69,7 @@ data=( `ls /etc/kyt/limit/vless/ip`);
 function trip(){
 #LIMITIPTROJAN
 echo -n > /var/log/xray/access.log
-sleep 3
+sleep 1
 data=( `ls /etc/kyt/limit/trojan/ip`);
 #Decrypted By YADDY D PHREAKER
     for user in "${data[@]}"
@@ -92,36 +92,12 @@ data=( `ls /etc/kyt/limit/trojan/ip`);
     done
 }
 
-function sship(){
-mulog=$(cekssh)
-date=$(date)
-data=( `ls /etc/kyt/limit/ssh/ip`);
-for user in "${data[@]}"
-do
-iplimit=$(cat /etc/kyt/limit/ssh/ip/$user)
-cekcek=$(echo -e "$mulog" | grep $user | wc -l);
-if [[ $cekcek -gt $iplimit ]]; then
-egrep "^$user" /etc/passwd >/dev/null
-passwd -l $user
-systemctl restart ws
-echo -e "$waktu\nRemoved User: $user Login: $cekcek IP Max: $ip IP \n" >> /etc/kyt/log/ssh/ssh.log
-send_log
-else
-echo > /dev/null
-fi
-sleep 0.1
-done
-}
-
-
 if [[ ${1} == "vmip" ]]; then
 vmip
 elif [[ ${1} == "vlip" ]]; then
 vlip
 elif [[ ${1} == "trip" ]]; then
 trip
-elif [[ ${1} == "sship" ]]; then
-sship
 fi
 
 
