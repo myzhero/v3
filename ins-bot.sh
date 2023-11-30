@@ -42,9 +42,9 @@ echo -e PUB='"'$PUB'"' >> /usr/bin/kyt/var.txt
 echo -e HOST='"'$NS'"' >> /usr/bin/kyt/var.txt
 clear
 
-cat > /etc/systemd/system/kyt.service << END
+cat > /etc/systemd/system/zhee.service << END
 [Unit]
-Description=Simple kyt - @kyt
+Description=Simple zhee - @zheevpn
 After=network.target
 
 [Service]
@@ -56,12 +56,12 @@ Restart=always
 WantedBy=multi-user.target
 END
 
-systemctl start kyt 
-systemctl enable kyt
-systemctl restart kyt
+systemctl start zhee
+systemctl enable zhee
+systemctl restart zhee
 cd /root
 
-bott=$(systemctl status kyt | grep running | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+bott=$(systemctl status zhee | grep running | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 # STATUS SERVICE BOT
 if [[ $bott == "running" ]]; then 
    status_bott="${g}Online$NC"
@@ -70,6 +70,7 @@ if [[ $bott == "running" ]]; then
 fi
 
 rm -rf ins-bot.sh
+clear
 echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
 echo -e "        $g .::. ${NC}INFO BOT PANEL${g} .::.        ${NC}"
 echo -e "${b}=━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━=${NC}"
