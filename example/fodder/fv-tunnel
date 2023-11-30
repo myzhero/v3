@@ -79,29 +79,15 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-# // SERVICE LIMIT IP SSH
-cat >/etc/systemd/system/sship.service << EOF
-[Unit]
-Description=My
-ProjectAfter=network.target
-
-[Service]
-WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip sship
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
 systemctl daemon-reload
-systemctl restart sship
-systemctl enable sship
-systemctl restart vmip
+systemctl start vmip
+systemctl start vlip
+systemctl start trip
 systemctl enable vmip
-systemctl restart vlip
 systemctl enable vlip
-systemctl restart trip
 systemctl enable trip
+systemctl restart vmip
+systemctl restart vlip
+systemctl restart trip
 
 rm -rf /root/fv-tunnel
