@@ -78,16 +78,12 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 EOF
-
 systemctl daemon-reload
-systemctl start vmip
-systemctl start vlip
-systemctl start trip
-systemctl enable --now vmip
-systemctl enable --now vlip
-systemctl enable --now trip
 systemctl restart vmip
+systemctl enable vmip
 systemctl restart vlip
+systemctl enable vlip
 systemctl restart trip
+systemctl enable trip
 
 rm -rf /root/fv-tunnel
